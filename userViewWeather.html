@@ -3,8 +3,15 @@
 
 <head>
   <title>Travel Log</title>
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <script src=
+  "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+      </script>
+      <script src=
+      "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+          </script>
   <style>
     * {
     margin: 0;
@@ -13,13 +20,16 @@
 }
 body
 {
-    background: #116396;
+    background: beige;
 }
 .container-fluid
 {
     width: 400px;
     margin: 60px auto;
     padding: 10px;
+}
+.container-fluid h1 {
+    text-align:center;
 }
 .inputs 
 {
@@ -42,10 +52,10 @@ body
     border-radius: 2px;
     margin-right:4px ;
 }
-.inputs input[type="submit"] 
-{
+.inputs input[type="submit"] {
     height: 3rem;
-    width: 6rem;
+    width: auto;
+    padding:5px;
     background: #0a67ca;
     font-weight: bold;
     color: white;
@@ -54,8 +64,7 @@ body
     border: none;
     border-radius: 2px;
 }
-.display 
-{
+.display {
     text-align: center;
     width: 400px;
     color: #16a864;
@@ -92,22 +101,28 @@ body
 }
 .wrapper p span
 {
-    color: #f4780d;
+    color: black;
     font-size: 25px;
 }
+.currencyConverterContainer{
+    align-items:center;
+}
+
 
  </style>
 </head>
 
 <body>
+
     
 
   <div class="container-fluid">
+    <h1>City Search</h1>
     <section class="main">
       <section class="inputs">
         <input type="text" placeholder="Enter any city..." id="cityinput">
         <input type="submit" value="Submit" id="add">
-        <button placeholder="submit" id="add"></button>
+        <input type="submit" onclick="return newRandomCity()"  value="Random City" id="cityRandomizer">
       </section>
 
       <section class="display">
@@ -119,13 +134,19 @@ body
         </div>
       </section>
     </section>
-
-  </div>
+</div>
 </body>
 
 </html>
 
 <script>
+
+function newRandomCity() {
+    document.getElementById("cityinput").innerHTML = "New York City";
+}
+
+//imports
+//Weather Search Script
 var inputval = document.querySelector('#cityinput')
 var btn = document.querySelector('#add');
 var city = document.querySelector('#cityoutput')
@@ -133,16 +154,18 @@ var descrip = document.querySelector('#description')
 var temp = document.querySelector('#temp')
 var wind = document.querySelector('#wind')
 apik = "3045dd712ffe6e702e3245525ac7fa38"
-function convertion(val)
-{
-    return (val - 273).toFixed(2)
+function tempConvertion(val) {
+    return ((val-273) * (9/5) + 32).toFixed(2)
+}
+function mphConversion(val) {
+    return (val * 0.621471).toFixed(2)
 }
 
 btn.addEventListener('click', function()
 {
-  fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputval.value+'&appid='+apik)
-  .then(res => res.json())
 
+fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputval.value+'&appid='+apik)
+.then(res => res.json())
 
   .then(data => 
   {
@@ -151,12 +174,16 @@ btn.addEventListener('click', function()
     var tempature = data['main']['temp']
     var wndspd = data['wind']['speed']
     city.innerHTML=`Weather of <span>${nameval}<span>`
-    temp.innerHTML = `Temperature: <span>${ convertion(tempature)} C</span>`
+    temp.innerHTML = `Temperature: <span>${ tempConvertion(tempature)} F</span>`
     description.innerHTML = `Sky Conditions: <span>${descrip}<span>`
-    wind.innerHTML = `Wind Speed: <span>${wndspd} km/h<span>`
-
+    wind.innerHTML = `Wind Speed: <span>${mphConversion(wndspd)} mph<span>`
+    
   })
 
-  .catch(err => alert('You entered Wrong city name'))
+  .catch(err => alert('You entered an invalid city name'))
 })
+
+
+
+
 </script>
