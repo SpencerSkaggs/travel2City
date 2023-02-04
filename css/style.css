@@ -6,61 +6,35 @@ body {
 
 /*Home Page*/
 .container {
-    position: relative;
-  }
-
-h1 span{ 
-    display: inline;
-    position: absolute;
-    top: 50px;
-    left: 25px;
-    font-size: 1.4em;
-}
-
-.otherStyle {  
-    display: inline;
-    position: absolute;
-    top: 27px;
-    left: 360px;
-    color:rgb(172, 23, 23);
-    font-size: 2em;
-}
-.return {
-    display: inline;
-    position: absolute;
-    top: 50px;
-    left: 395px;
-    font-size: 1.4em;
-}
-
-.plan {
-    display: inline;
-    position: absolute;
-    top: 250px;
-    left: 90px;
-}
-
-.circle {
     position: absolute;
     top: 0;
     left: 0;
     background-color: white;
-    border-radius: 100%;
-    padding: 250px 250px;
-    opacity: 50%;
+    border-radius: 50%;
+    padding: 40px 10px;
+    width: 40%;
+    margin: 20px auto 0px 20px;
+    box-shadow: 8px 0 8px 0 rgba(0,0,0,0.2);
+    opacity: 80%;
+}
+
+h1 span{ 
+    font-size: 140%;
+}
+
+.otherStyle {  
+    color:rgb(172, 23, 23);
+    font-size: 160%;
+}
+.return {
+    font-size: 140%;
 }
 
 .welcomeh3 {
-    position: absolute;
-    top: 100px;
-    left: 25px;
     font-size: 1.5em;
 }
 
 .loginButton {
-    position: absolute;
-    top: 300px;
-    left: 175px;
     font-size: 14px;
     padding: 6px 12px;
     margin: 30px auto;
@@ -68,9 +42,6 @@ h1 span{
 }
 
 .signUpButton {
-    position: absolute;
-    top: 300px;
-    left: 250px;
     font-size: 14px;
     padding: 6px 12px;
     margin: 30px auto;
@@ -183,6 +154,14 @@ li a:hover {
     background-color: #111;
   }
 
+#account {
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 0 2em 0 0;
+}
+
 .loggerContainer {
     display: inline-block;
     background-color: rgb(255, 255, 255);
@@ -247,8 +226,30 @@ li a:hover {
     border-radius: 10px;
 }
 
+h5 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.0em;
+}
+
+.review {
+    padding: 0 0 0 5px;
+    text-align: left;
+    font-size: 0.7em;
+}
+
 .footer {
     background-color:rgb(109, 143, 165);
     padding: 5px;
     color: white;
+}
+
+.container-fluid {
+    display: block;
+    background-color: rgb(206, 206, 206);
+    border-radius: 10px;
+    padding: 5px 0 20px 0;
+    width: 80%;
+    margin: 15px auto 15px auto;
+    box-shadow: 8px 0 8px 0 rgba(0,0,0,0.2);
 }
