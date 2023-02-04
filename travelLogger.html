@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <title>Travel Logger</title>
     <div class="header">
-        <ul>
+<ul>
             <li id="Travel2City">
                 <h6>
                     <span >Travel</span>
@@ -48,11 +48,128 @@
                 <img src="images/macchuPicchu.jpeg" alt="peru" class="peru" width="100%">
                 <h5>Machu Picchu, Peru</h5>
             </div>
-         </div>
-         <h2 class="nextTrip">Plan your next trip now!</h2>
-    </div>
-</body>
+               
+          </div>
+        
+          <h2 class="nextTrip">Plan your next trip now!</h2>
+    <!--City Search--->
+<div class="container-fluid">
+  <h1>City Search</h1>
+  <section class="main">
+    <section class="inputs">
+      <input type="text" placeholder="Enter any city..." id="cityinput">
+      <input type="submit" value="Submit" id="add">
+      <input type="submit" onclick="return newRandomCity()"  value="Random City" id="cityRandomizer">
+    </section>
+<!--Current Weather Information-->
+    <section class="display">
+      <div class="wrapper">
+        <h2 id="cityoutput"></h2>
+        <p id="description"></p>
+        <p id="temp"></p>
+        <p id="wind"></p>
+      </div>
+    </section>
+  </section>
+</div>
+
+  
+      <!--Exchange Rate-->
+  <section class="display">
+      <form>
+          <label>From:</label>
+          <select id="from">
+             <option value="USD">USD</option>
+             <option value="EUR">EUR</option>
+             <option value="GBP">GBP</option>
+             <option value="INR">INR</option>
+          </select>
+          <label>To:</label>
+          <select id="to">
+             <option value="USD">USD</option>
+             <option value="EUR">EUR</option>
+             <option value="GBP">GBP</option>
+             <option value="INR">INR</option>
+          </select>
+          <label>Amount:</label>
+          <input type="text" id="amount" />
+          <button type="button" id="convert">Convert</button>
+          <p id="result"></p>
+       </form>
+  </section>
+        </div>
+
+
+
+
+
+  </body>
+<!--Footer Information-->
 <div class="footer">
     <p>&copy Austin Perales and Spencer Skaggs</p>
 </div>
 </html>
+
+<!--Javascript Start-->
+<script>
+
+//Currency JS
+const convert = document.getElementById("convert");
+      const result = document.getElementById("result");
+      const from = document.getElementById("from");
+      const to = document.getElementById("to");
+      const amount = document.getElementById("amount");
+      convert.addEventListener("click", function() {
+         let fromCurrency = from.value;
+         let toCurrency = to.value;
+         let amt = amount.value;
+         fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`)
+         .then(response => {
+               return response.json();
+         })
+         .then(data => {
+            let rate = data.rates[toCurrency];
+            let total = rate * amt;
+            result.innerHTML = `${amt} ${fromCurrency} = ${total.toFixed(2)}
+            ${toCurrency}`;
+         });
+      });
+
+//imports
+//Weather Search Script
+var inputval = document.querySelector('#cityinput')
+var btn = document.querySelector('#add');
+var city = document.querySelector('#cityoutput')
+var descrip = document.querySelector('#description')
+var temp = document.querySelector('#temp')
+var wind = document.querySelector('#wind')
+apik = "3045dd712ffe6e702e3245525ac7fa38"
+function tempConvertion(val) {
+    return ((val-273) * (9/5) + 32).toFixed(2)
+}
+function mphConversion(val) {
+    return (val * 0.621471).toFixed(2)
+}
+
+btn.addEventListener('click', function()
+{
+
+fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputval.value+'&appid='+apik)
+.then(res => res.json())
+
+  .then(data => 
+  {
+    var nameval = data['name']
+    var descrip = data['weather']['0']['description']
+    var tempature = data['main']['temp']
+    var wndspd = data['wind']['speed']
+    city.innerHTML=`Weather of <span>${nameval}<span>`
+    temp.innerHTML = `Temperature: <span>${ tempConvertion(tempature)} F</span>`
+    description.innerHTML = `Sky Conditions: <span>${descrip}<span>`
+    wind.innerHTML = `Wind Speed: <span>${mphConversion(wndspd)} mph<span>`
+    
+  })
+
+  .catch(err => alert('You entered an invalid city name'))
+})
+</script>
