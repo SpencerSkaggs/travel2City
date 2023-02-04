@@ -49,7 +49,6 @@
                 <img src="macchuPicchu.jpeg" alt="peru" class="peru" width="100%">
                 <h5>Machu Picchu, Peru</h5>
             </div>
-               
           </div>
         
           <h2 class="nextTrip">Plan your next trip now!</h2>
@@ -60,7 +59,7 @@
     <section class="inputs">
       <input type="text" placeholder="Enter any city..." id="cityinput">
       <input type="submit" value="Submit" id="add">
-      <input type="submit" onclick="return newRandomCity()"  value="Random City" id="cityRandomizer">
+      <input type="submit" onclick="randomCity();"  value="Random City" id="cityRandomizer">
     </section>
 <!--Current Weather Information-->
     <section class="display">
@@ -74,8 +73,9 @@
   </section>
 </div>
 
-  
-      <!--Exchange Rate-->
+    <!--Expected Budget-->
+
+    <!--Exchange Rate-->
   <section class="display">
       <form>
           <label>From:</label>
@@ -98,7 +98,10 @@
           <p id="result"></p>
        </form>
   </section>
-        </div>
+  
+  <script async src="https://widget.budgetyourtrip.com/location-widget-js/MZ&defaultcurrency=USD" type="text/javascript"></script><a href=https://www.budgetyourtrip.com/united-states-of-america/${inputcity} target="_blank" class="budgetyourtrip-logo-pushdown" rel="noopener">${inputcity} Travel Costs</a>
+        
+</div>
 
 
 
@@ -113,6 +116,26 @@
 
 <!--Javascript Start-->
 <script>
+  const textForCityInput = document.getElementById("cityinput");
+  
+function randomCity() {
+  var value;
+  var rnd = Math.floor(Math.random()*6);
+  if(rnd == 1) {
+    value = 'Atlanta'
+  } else if(rnd == 2) {
+    value = 'Houston'
+  } else if(rnd == 3) {
+    value = 'Chicago'
+  } else if(rnd == 4) {
+    value = 'Philadelphia'
+  } else if(rnd == 5) {
+    value = 'Denver'
+  } else if(rnd == 0) {
+    value = 'Seattle'
+  }
+  document.getElementById('cityinput').value = value;
+}
 
 //Currency JS
 const convert = document.getElementById("convert");
@@ -173,4 +196,8 @@ fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputval.value+'&appi
 
   .catch(err => alert('You entered an invalid city name'))
 })
+
+
+
+
 </script>
