@@ -136,15 +136,56 @@ h1 span{
 
 
 /* Travel Logger */
-.header {
-    display: flex;
-    padding: 30px;
-    background-color: blanchedalmond;
+h6 {
+    margin: 0;
+    padding: 0;
 }
+
+h6 span{ 
+    color: white;
+    font-size: 3em;
+}
+
+.other6 {  
+    color:rgb(172, 23, 23);
+    font-size: 4em;
+}
+.return6 {
+    color: white;
+    font-size: 3em;
+}
+
+#Travel2City {
+    margin: 0 2em 0 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 5;
+    margin: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+  }
 
 .loggerContainer {
     display: inline-block;
-    background-color: rgb(187, 166, 166);
+    background-color: rgb(255, 255, 255);
     padding: 60px 10px;
     width: 90%;
     height: 100em;
@@ -168,7 +209,7 @@ h1 span{
 
 .Trip1 {
     margin: auto;
-    background-color: white;
+    background-color: rgb(206, 206, 206);
     width: 20em;
     height: 20em;
     border-radius: 10px;
@@ -181,7 +222,7 @@ h1 span{
 
 .Trip2 {
     margin: auto;
-    background-color: white;
+    background-color: rgb(206, 206, 206);
     width: 20em;
     height: 20em;
     border-radius: 10px;
@@ -194,7 +235,7 @@ h1 span{
 
 .Trip3 {
     margin: auto;
-    background-color: white;
+    background-color: rgb(206, 206, 206);
     width: 20em;
     height: 20em;
     border-radius: 10px;
@@ -207,7 +248,7 @@ h1 span{
 }
 
 .footer {
-    background-color:rgb(30, 78, 97);
-    padding: 8px;
+    background-color:rgb(109, 143, 165);
+    padding: 5px;
     color: white;
 }
