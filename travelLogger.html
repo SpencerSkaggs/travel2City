@@ -72,13 +72,21 @@
                   <input type="submit" value="Submit" id="add">
                   <input type="submit" onclick="randomCity()"  value="Random City" id="cityRandomizer">
                 </section>
+            <!--BudgetWidget-->
+                
+
+
             <!--Current Weather Information-->
                 <section class="display">
                   <div class="wrapper">
+                    <a href=https://www.budgetyourtrip.com/united-states-of-america/Atlanta><p>Expected Budget</p></a>
+                    <p id="airport"></p>
+                    <p>
                     <h2 id="cityoutput"></h2>
                     <p id="description"></p>
                     <p id="temp"></p>
                     <p id="wind"></p>
+                    
                   </div>
                 </section>
               </section>
@@ -110,10 +118,6 @@
             </section>
         </div>
 
-
-
-
-
   </body>
 <!--Footer Information-->
 <div class="footer">
@@ -127,22 +131,32 @@
   
 function randomCity() {
   var value;
+  var url;
   var rnd = Math.floor(Math.random()*6);
   if(rnd == 1) {
     value = 'Atlanta'
+    url = 'https://www.budgetyourtrip.com/united-states-of-america/atlanta'
   } else if(rnd == 2) {
     value = 'Houston'
+    url = 'https://www.budgetyourtrip.com/united-states-of-america/houston'
   } else if(rnd == 3) {
     value = 'Chicago'
+    url = 'https://www.budgetyourtrip.com/united-states-of-america/chicago'
   } else if(rnd == 4) {
     value = 'Philadelphia'
+    url = 'https://www.budgetyourtrip.com/united-states-of-america/philadelphia'
   } else if(rnd == 5) {
     value = 'Denver'
+    url = 'https://www.budgetyourtrip.com/united-states-of-america/denver'
   } else if(rnd == 0) {
     value = 'Seattle'
+    url = 'https://www.budgetyourtrip.com/united-states-of-america/seattle'
+
   }
   document.getElementById('cityinput').value = value;
+  document.getElementById('url').value = url;
 }
+
 
 //Currency JS
 const convert = document.getElementById("convert");
@@ -194,12 +208,14 @@ fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputval.value+'&appi
     var descrip = data['weather']['0']['description']
     var tempature = data['main']['temp']
     var wndspd = data['wind']['speed']
-    city.innerHTML=`Weather of <span>${nameval}<span>`
+    city.innerHTML=`Current Weather in <span>${nameval}<span>`
     temp.innerHTML = `Temperature: <span>${ tempConvertion(tempature)} F</span>`
-    description.innerHTML = `Sky Conditions: <span>${descrip}<span>`
-    wind.innerHTML = `Wind Speed: <span>${mphConversion(wndspd)} mph<span>`
-    
-  })
+    description.innerHTML = `Sky Conditions: <span>${descrip}</span>`
+    wind.innerHTML = `Wind Speed: <span>${mphConversion(wndspd)} mph</span>`
+    airport.innerHTML = `Closest Airport: <span> Hartsfield-Jackson International Airport <span>` 
+      
+      
+    })
 
   .catch(err => alert('You entered an invalid city name'))
 })
